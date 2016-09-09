@@ -41,6 +41,9 @@ def get_features_mtx(pheno_file, mask_img,output_path):
 		except:
 			missing_data.append(str(ss)+'\n')
 
+	print 'image_files: ', fnames
+	print 'number of image_files: ' len(fnames)
+
 
 	trimmed_phenos = phenos[~phenos.index.isin(missing_data)]
 	Y=trimmed_phenos['DX_GROUP'].values # labels or diagnosis group or Y for classifier
@@ -84,7 +87,8 @@ parser.add_argument('--pheno_file', help='File containing the participant'
     'participant id in the first column, the diagnosis in the'
     'second column.', required=True)
 parser.add_argument('--input_dir', help='Directory with subject files', required=True)
-parser.add_argument('--output_dir', help='Directory to contain output i.e. model weights and  model details',required=True)
+parser.add_argument('--output_dir', help='Directory to contain output i.e. model'
+					'weights and model details',required=True)
 parser.add_argument('--mask', help='Mask for non-zero brain tissue. Needs complete path',required=True)
 parser.add_argument('--train', action='store_true')
 parser.add_argument('--test', action='store_true')
